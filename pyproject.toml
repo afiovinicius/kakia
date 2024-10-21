@@ -14,9 +14,8 @@ langchain = "^0.3.4"
 langchain-core = "^0.3.12"
 langchain-groq = "^0.2.0"
 comtypes = "^1.4.7"
-vosk = "^0.3.45"
 logging = "^0.4.9.6"
-ratelimit = "^2.2.1"
+gtts = "^2.5.3"
 
 
 [tool.poetry.group.dev.dependencies]
