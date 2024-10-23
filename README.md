@@ -8,3 +8,23 @@ O Assistente Kakía é um assistente virtual desenvolvido em Python que permite 
 - **Pesquisa na Web:** Abra pesquisas no Google ou no YouTube.
 - **Interação por Texto:** Insira comandos manualmente.
 - **Integração com Modelos de Linguagem:** Utilize um modelo de linguagem para respostas a perguntas.
+
+## Estrutura
+
+```
+|—— kakia/
+|———— kak_ia/
+|—————— core/
+|———————— assistant.py
+|———————— commands.py
+|———————— gtts.py
+|———————— ptts.py
+|———————— logging.py
+|———————— voicer.py
+|—————— main.py
+|———— .env
+|———— .gitignore
+|———— pyproject.toml
+|———— README.md
+
+```
