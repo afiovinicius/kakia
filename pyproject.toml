@@ -24,6 +24,7 @@ pydantic = "^2.9.2"
 pydantic-settings = "^2.6.0"
 alembic = "^1.13.3"
 psycopg2-binary = "^2.9.10"
+ollama = "^0.3.3"
 
 
 [tool.poetry.group.dev.dependencies]

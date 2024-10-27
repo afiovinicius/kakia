@@ -9,6 +9,7 @@ O Assistente Kakía é um assistente virtual desenvolvido em Python que permite 
 - **Interação por Texto:** Insira comandos manualmente.
 - **Integração com Modelos de Linguagem:** Utilize um modelo de linguagem para respostas a perguntas.
 - **Varredura de dados:** Executa um web scraping para fazer uma coleta de dados simples com tópico e url específica.
+- **Gera Imagens** Gera imagens em base de uma descrição objetiva e simples.
 
 ## Estrutura
 
