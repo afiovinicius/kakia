@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "kak-ia"
-version = "0.1.0"
-description = ""
+version = "1.0.0"
+description = "Assistente de IA."
 authors = ["afiovinicius <afiovinicius@gmail.com>"]
 readme = "README.md"
 
@@ -16,6 +16,14 @@ langchain-groq = "^0.2.0"
 comtypes = "^1.4.7"
 logging = "^0.4.9.6"
 gtts = "^2.5.3"
+scrapy = "^2.11.2"
+redis = "^5.1.1"
+psycopg2 = "^2.9.10"
+sqlalchemy = "^2.0.36"
+pydantic = "^2.9.2"
+pydantic-settings = "^2.6.0"
+alembic = "^1.13.3"
+psycopg2-binary = "^2.9.10"
 
 
 [tool.poetry.group.dev.dependencies]

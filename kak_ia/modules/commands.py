@@ -1,8 +1,10 @@
-import webbrowser
 import time
+import webbrowser
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers.string import StrOutputParser
+
+from kak_ia.modules.webscraping import start_scraper
 
 
 class CommandProcessor:
@@ -19,8 +21,25 @@ class CommandProcessor:
         {text}
         """
         self.prompt = PromptTemplate.from_template(template=template)
-        self.chat = ChatGroq(model="llama-3.1-70b-versatile")
+        self.chat = ChatGroq(
+            model="llama-3.1-8b-instant"
+        )  # modelo rápido: llama-3.1-8b-instant modelo padrão: llama-3.1-70b-versatile
         self.chain = self.prompt | self.chat | StrOutputParser()
+
+    def process_command(self, command, opt):
+        if "abrir youtube" in command:
+            self.open_youtube(opt)
+        elif "abrir google" in command:
+            self.open_google(opt)
+        elif "fazer varredura" in command:
+            self.scrapy(opt)
+        elif "tchau" in command or "fechar" in command:
+            self.tts.speak("Até a próxima!")
+            exit(0)
+        elif command:
+            self.tts.speak("Deixe-me ver...")
+            response = self.ask_groq(command)
+            self.tts.speak(response)
 
     def ask_groq(self, question):
         if self.req_count >= self.req_max:
@@ -46,19 +65,6 @@ class CommandProcessor:
             self.tts.speak("Erro ao consultar o modelo.")
             return "Não consegui obter uma resposta agora."
 
-    def process_command(self, command, opt):
-        if "abrir youtube" in command:
-            self.open_youtube(opt)
-        elif "abrir google" in command:
-            self.open_google(opt)
-        elif "tchau" in command or "fechar" in command:
-            self.tts.speak("Até a próxima!")
-            exit(0)
-        elif command:
-            self.tts.speak("Deixe-me ver...")
-            response = self.ask_groq(command)
-            self.tts.speak(response)
-
     def open_youtube(self, opt):
         self.tts.speak("O que você deseja pesquisar no Youtube?")
         query = (
@@ -82,3 +88,13 @@ class CommandProcessor:
             self.tts.speak(f"Pesquisando {query}.")
         else:
             self.tts.speak("Não entendi o que você deseja pesquisar.")
+
+    def scrapy(self, opt):
+        self.tts.speak("Informe o URL que deseja varrer.")
+        query = input("Digite o URL: ") if opt == "digitar" else self.vr.get_command()
+        if query:
+            self.tts.speak(f"Iniciando varredura no URL.")
+            start_scraper(query)
+            self.tts.speak("Varredura concluída.")
+        else:
+            self.tts.speak("Não entendi o URL.")

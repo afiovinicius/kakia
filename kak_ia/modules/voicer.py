@@ -1,6 +1,6 @@
 import speech_recognition as sr
 
-from kak_ia.core.gtts import TextToSpeech
+from kak_ia.components.gtts import TextToSpeech
 
 
 class VoiceRecognition:
