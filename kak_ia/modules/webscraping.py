@@ -1,3 +1,4 @@
+import logging
 import scrapy
 from scrapy.crawler import CrawlerProcess
 
@@ -13,8 +14,12 @@ class WebScraper(scrapy.Spider):
         self.cs = SaveScraped()
 
     def parse(self, response):
-        content = response.css("p::text").getall()
-        self.cs.cache_and_store(response.url, content)
+        try:
+            content = response.css("p::text").getall()
+            self.cs.cache_and_store(response.url, content)
+            logging.info(f"Conteúdo coletado e armazenado para URL: {response.url}")
+        except Exception as e:
+            logging.error(f"Erro ao processar URL {response.url}: {e}")
 
 
 def start_scraper(url):

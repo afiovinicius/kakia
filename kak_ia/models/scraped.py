@@ -11,7 +11,5 @@ class ScrapedData(Base):
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     url = Column(String, index=True)
-    tema = Column(String, index=True)
-    subtemas = Column(String, index=True)
-    json_content = Column(JSON, nullable=False)
+    content = Column(JSON, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
