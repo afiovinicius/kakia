@@ -1,7 +1,7 @@
-from kak_ia.core.commands import CommandProcessor
-from kak_ia.core.voicer import VoiceRecognition
-from kak_ia.core.gtts import TextToSpeech
-from kak_ia.core.logging import setup_logging
+from kak_ia.modules.logging import setup_logging
+from kak_ia.modules.commands import CommandProcessor
+from kak_ia.modules.voicer import VoiceRecognition
+from kak_ia.components.gtts import TextToSpeech
 
 
 class KakiaAssistant:
