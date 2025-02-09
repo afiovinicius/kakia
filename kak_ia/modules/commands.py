@@ -91,10 +91,24 @@ class CommandProcessor:
 
     def scrapy(self, opt):
         self.tts.speak("Informe o URL que deseja varrer.")
-        query = input("Digite o URL: ") if opt == "digitar" else self.vr.get_command()
-        if query:
-            self.tts.speak(f"Iniciando varredura no URL.")
-            start_scraper(query)
-            self.tts.speak("Varredura concluída.")
+
+        url = input("Digite o URL: ") if opt == "digitar" else self.vr.get_command()
+
+        if url:
+            self.tts.speak("Informe o tópico para a varredura.")
+            topic = (
+                input("Digite o tópico: ")
+                if opt == "digitar"
+                else self.vr.get_command()
+            )
+
+            if topic:
+                self.tts.speak(
+                    f"Iniciando varredura no URL com foco no tópico '{topic}'."
+                )
+                start_scraper(url, topic)
+                self.tts.speak("Varredura concluída.")
+            else:
+                self.tts.speak("Não entendi o tópico.")
         else:
             self.tts.speak("Não entendi o URL.")
