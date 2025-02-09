@@ -9,10 +9,12 @@ class SaveScraped:
         self
         # self.redis_cache = Caching()
 
-    def cache_and_store(self, url, content):
+    def cache_and_store(self, url, data):
         # self.redis_cache.set(url, content)
 
         db = next(get_db())
-        scraped_data = ScrapedData(url=url, content=content)
+        scraped_data = ScrapedData(
+            url=url, topic=data["topic"], content=data["content"]
+        )
         db.add(scraped_data)
         db.commit()
