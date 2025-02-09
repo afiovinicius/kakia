@@ -1,3 +1,4 @@
+import logging
 import redis.asyncio as aioredis
 
 from kak_ia.core.config import settings
@@ -13,6 +14,7 @@ class Caching:
             return value.decode() if value else None
         except aioredis.RedisError as e:
             print(f"Erro ao obter chave {key}: {e}")
+            logging.error(f"Erro ao obter chave {key}: {e}")
             return None
 
     async def set(self, key: str, value: str):
@@ -21,4 +23,5 @@ class Caching:
             return result
         except aioredis.RedisError as e:
             print(f"Erro ao definir chave {key}: {e}")
+            logging.error(f"Erro ao definir chave {key}: {e}")
             return False
